@@ -1,0 +1,17 @@
+function foo() {
+  echo "FOO" $@
+}
+
+function var() {
+  echo "VAR" $@
+}
+
+function ts_t() {
+    local a
+    a=$1
+    if [[ $a == "" ]]; then
+        echo empty
+    else
+        echo $a
+    fi
+}

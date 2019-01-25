@@ -1,0 +1,22 @@
+#!/bin/bash
+
+function fail() {
+    local msg exit_code
+    msg=$1
+    exit_code=$2
+    echo "$msg"
+    exit "$exit_code"
+}
+
+if [[ ! -e Perunfile ]]; then
+    fail "No Perunfile found" 1
+fi
+
+if [[ $# -eq 0 ]]; then
+    fail "Task?" 2
+fi
+
+source "$(pwd)"/Perunfile
+TASK=$1
+shift
+$TASK "$@"

@@ -1,0 +1,14 @@
+perun_complete() {
+    local cur prev opts commands
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    if [[ -e Perunfile ]] ; then
+        opts=$(grep function Perunfile | awk 'BEGIN{FS="[ (]"} {print $2}' | tr '\n' ' ')
+    fi
+
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    return 0
+}
+complete -F perun_complete -o default Perun
