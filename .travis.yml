@@ -4,10 +4,10 @@ os:
 
 script:
     - cd test
-    - test "$(Perun echo_foo)" == "foo"
-    - test "$(Perun echo_foo bar)" == "foo"
-    - test "$(Perun echo_bar_and_args)" == "bar"
-    - test "$(Perun echo_bar_and_args arg)" == "BAR arg"
-    - test "$(Perun echo_bar_and_args arg1 arg2)" == "BAR arg1 arg2"
-    - test "$(Perun echo_empty_or_first_arg)" == "empty"
-    - test "$(Perun echo_empty_or_first_arg foo)" == "foo"
+    - test "$(../Perun echo_foo)" == "foo"
+    - test "$(../Perun echo_foo bar)" == "foo"
+    - test "$(../Perun echo_bar_and_args)" == "bar"
+    - test "$(../Perun echo_bar_and_args arg)" == "BAR arg"
+    - test "$(../Perun echo_bar_and_args arg1 arg2)" == "BAR arg1 arg2"
+    - test "$(../Perun echo_empty_or_first_arg)" == "empty"
+    - test "$(../Perun echo_empty_or_first_arg foo)" == "foo"
