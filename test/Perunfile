@@ -1,17 +1,17 @@
-function foo() {
-  echo "FOO" $@
+function echo_foo() {
+  echo "foo"
 }
 
-function var() {
-  echo "VAR" $@
+function echo_bar_and_args() {
+  echo "bar" "$@"
 }
 
-function ts_t() {
+function echo_empty_or_first_arg() {
     local a
     a=$1
     if [[ $a == "" ]]; then
         echo empty
     else
-        echo $a
+        echo "$a"
     fi
 }
