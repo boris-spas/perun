@@ -9,14 +9,37 @@ function fail() {
 }
 
 if [[ ! -e Perunfile ]]; then
-    fail "No Perunfile found" 1
+    echo "No Perunfile found, create one? (Y/n): "
+    read -r create
+    if [[ $create == "Y" ]]; then
+        {
+            echo '#!/bin/bash'
+            echo '# For use with Perun (https://github.com/boris-spas/perun)'
+        } > Perunfile
+    else
+        fail "No Perunfile" 1
+    fi
 fi
 
 if [[ $# -eq 0 ]]; then
     fail "Task?" 2
 fi
 
-source "$(pwd)"/Perunfile
+function _s() {
+    local name=$1
+    shift
+    {
+        echo ""
+        echo "function $name() {"
+        echo "    $*"
+        echo "}"
+    } >> "$PERUNFILE"
+    tail -n 3 "$PERUNFILE"
+}
+
+PERUNFILE="$(pwd)"/Perunfile
+# shellcheck source=/dev/null
+source "$PERUNFILE"
 TASK=$1
 shift
 $TASK "$@"
