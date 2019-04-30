@@ -11,3 +11,4 @@ script:
     - test "$(../Perun echo_bar_and_args arg1 arg2)" == "bar arg1 arg2"
     - test "$(../Perun echo_empty_or_first_arg)" == "empty"
     - test "$(../Perun echo_empty_or_first_arg foo)" == "foo"
+    - test "$(../Perun _s test 'echo foo' <<< Y" == "foo"
