@@ -11,3 +11,10 @@ script:
     - test "$(../Perun echo_bar_and_args arg1 arg2)" == "bar arg1 arg2"
     - test "$(../Perun echo_empty_or_first_arg)" == "empty"
     - test "$(../Perun echo_empty_or_first_arg foo)" == "foo"
+    - mkdir dir_without_perunfile
+    - cd dir_without_perunfile
+      # Intentionally fails cause no task was given
+    - test "! $(../../Perun <<< Y)"
+    - test "$(head -n 1 Perunfile)" == '#!/bin/bash'
+    - test "$(../../Perun _s test 'echo foo')"
+    - test "$(../../Perun test)" == "foo"
