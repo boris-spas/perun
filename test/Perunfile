@@ -15,3 +15,7 @@ function echo_empty_or_first_arg() {
         echo "$a"
     fi
 }
+
+function testArgMap() {
+    echo "${ARGMAP["-d"]:-NOT_PROVIDED}"
+}
