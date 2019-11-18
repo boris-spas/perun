@@ -37,9 +37,24 @@ function _s() {
     tail -n 3 "$PERUNFILE"
 }
 
+_argmap() {
+    while [ ! "$1" == "" ]; do
+        local key="${1}"
+        if [[ "$key" == -* ]]; then
+            shift
+            local value="${1}"
+            ARGMAP["$key"]="${value:- }"
+        fi
+        shift
+    done
+}
+
 PERUNFILE="$(pwd)"/Perunfile
 # shellcheck source=/dev/null
 source "$PERUNFILE"
 TASK=$1
 shift
+declare -A ARGMAP
+export ARGMAP
+_argmap "$@"
 $TASK "$@"
