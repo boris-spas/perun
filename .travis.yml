@@ -14,6 +14,9 @@ script:
     - test "$(../Perun testArgMap -d foo)" == "foo"
     - test "$(../Perun testArgMap -d)" == " "
     - test "$(../Perun testArgMap)" == "NOT_PROVIDED"
+    - test "$(../Perun testArgs -d foo bar baz)" == "bar baz "
+    - test "$(../Perun testArgs foo -d bar baz)" == "foo baz "
+    - test "$(../Perun testArgs foo bar -d baz)" == "foo bar "
     - pushd .
     - mkdir dir_without_perunfile
     - cd dir_without_perunfile

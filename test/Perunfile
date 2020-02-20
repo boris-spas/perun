@@ -19,3 +19,9 @@ function echo_empty_or_first_arg() {
 function testArgMap() {
     echo "${ARGMAP["-d"]:-NOT_PROVIDED}"
 }
+
+function testArgs() {
+    for v in "${ARGS[@]}"; do
+        echo -n "$v "
+    done
+}
