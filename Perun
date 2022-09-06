@@ -16,6 +16,7 @@ if [[ ! -e Perunfile ]]; then
             echo '#!/bin/bash'
             echo '# For use with Perun (https://github.com/boris-spas/perun)'
         } > Perunfile
+        $EDITOR Perunfile
     else
         fail "No Perunfile" 1
     fi
@@ -41,8 +42,10 @@ _argmap() {
     while [ ! "$1" == "" ]; do
         local key="${1}"
         if [[ "$key" == -* ]]; then
-            shift
-            local value="${1}"
+            local value="${2}"
+            if [[ "$value" != -* ]]; then
+                shift
+            fi
             ARGMAP["$key"]="${value:- }"
         else
             ARGS+=("$key")
