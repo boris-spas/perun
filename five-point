@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sort -n | awk '{ a[i++]=$1; } END { print "#   "i"\nmin: "a[0]"\n q1: "a[int(i/4)]"\nmed: "a[int(i/2)]"\n q3: "a[int(3*i/4)]"\nmax: "a[i-1]}'
+
